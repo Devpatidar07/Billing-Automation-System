@@ -88,14 +88,26 @@ def generate_invoice(customer_id, product_ids, quantities):
 
 # Streamlit UI
 st.title("Invoice Automation System")
+st.markdown("##### by Devendra Patidar")
+st.sidebar.image("Mlogo.png", width=100)
 st.sidebar.header("Select Customer and Products")
 
+st.markdown("""
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+""", unsafe_allow_html=True)
+st.sidebar.markdown("")
+st.sidebar.markdown("")
 customer_names = customers["customer_name"].tolist()
-selected_customer = st.sidebar.selectbox("Customer", customer_names)
+st.sidebar.markdown('<i class="fa fa-user" style="margin-right: 5px;"></i> <b>Customer</b>', unsafe_allow_html=True)
+selected_customer = st.sidebar.selectbox("", customer_names)
 customer_id = customers[customers['customer_name'] == selected_customer]['customer_id'].values[0]
 
+
+st.sidebar.markdown("")
 product_names = products['product_name'].tolist()
-selected_products = st.sidebar.multiselect("Products", product_names)
+st.sidebar.markdown('<i class="fa fa-shopping-cart" style="margin-right: 5px;"></i> <b>Products</b>', unsafe_allow_html=True)
+selected_products = st.sidebar.multiselect("", product_names)
+
 product_ids = products[products['product_name'].isin(selected_products)]['product_id'].tolist()
 
 quantities = []
@@ -103,6 +115,10 @@ for product in selected_products:
     quantity = st.sidebar.number_input(f"Quantity of {product}", min_value=1, max_value=100, value=1)
     quantities.append(quantity)
 
+st.sidebar.markdown("")
+st.sidebar.markdown("")
+st.sidebar.markdown("")
+st.sidebar.markdown("**To generate PDF invoice, click below:**")
 if st.sidebar.button("Generate Invoice"):
     if len(product_ids) != len(quantities):
         st.error("Mismatch between selected products and quantities")
