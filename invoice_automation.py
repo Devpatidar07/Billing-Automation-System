@@ -139,7 +139,7 @@ if st.sidebar.button("Generate Invoice"):
             st.markdown(pdf_display, unsafe_allow_html=True)
 
 # Display selected items
-st.write(f"*Selected Customer:* {selected_customer}")
-st.write("*Selected Products:*")
+st.write(f"*Selected Customer:*  {selected_customer}")
+st.write("*Selected Products:* ")
 for i, product in enumerate(selected_products):
     st.write(f"{product} - {quantities[i]} units")
