@@ -55,14 +55,15 @@ def generate_invoice(customer_id, product_ids, quantities):
     pdf.add_font('DejaVu', 'B', 'DejaVuSans-Bold.ttf', uni=True)
 
     pdf.set_font("DejaVu", 'B', size=18)
-    pdf.cell(200, 15, txt="INVOICE ~ IT CAM Security", ln=True, align='C')
-    pdf.set_font("DejaVu", 'B', 10)
-    pdf.cell(200, 5, "IT CAM Security Pvt. Ltd.", ln=True, align='C')
+    pdf.cell(200, 12, txt="IT CAM Security Pvt. Ltd.", ln=True, align='C')
     pdf.set_font("DejaVu", '', 10)
     pdf.cell(200, 5, "Mandleshwer Road, Gawali Palasiya, 453441", ln=True, align='C')
     pdf.cell(200, 5, "Phone: 0987654321 | Email: support@itcam.in", ln=True, align='C')
+    pdf.cell(200, 5, txt="", ln=True)
+    pdf.set_font("DejaVu", 'B', 15)
+    pdf.cell(200, 5, "INVOICE", ln=True, align='C')
     pdf.image("Mlogo.png", x=165, y=35, w=30)
-    pdf.cell(200, 10, txt="", ln=True)
+    pdf.cell(200, 3, txt="", ln=True)
 
     pdf.set_font("DejaVu", size=12)
     pdf.cell(200, 10, txt=f"Invoice Number: {invoice_number}", ln=True)
@@ -109,14 +110,19 @@ def generate_invoice(customer_id, product_ids, quantities):
     pdf.cell(30, 10, txt=f"₹ {total}", border=1)
 
     # Signature
-    pdf.ln(35)
+    pdf.ln(12)
+
+    # Insert stamp and signature images above the signatory text
+    current_y = pdf.get_y()
+    pdf.image("stampseal.png", x=160, y=current_y, w=40)
+    pdf.image("sign.png", x=140, y=current_y + 8, w=80)
+
+    pdf.ln(25)
     pdf.set_font("DejaVu", 'B', size=12)
-    pdf.image("stampseal.png", x=160, y=161, w=40)
-    pdf.image("sign.png", x=140, y=169, w=80)
     pdf.cell(0, 9, "Authorized Signatory", ln=True, align='R')
     pdf.cell(0, 9, "Devendra Patidar", ln=True, align='R')
     pdf.set_font("DejaVu", '', size=11)
-    pdf.cell(0, 5, "ITCAM Security Pvt. Ltd.", ln=True, align='R')
+    pdf.cell(0, 5, "IT CAM Security Pvt. Ltd.", ln=True, align='R')
 
     filename = f"invoice_{invoice_number}.pdf"
     pdf.output(filename)
