@@ -60,9 +60,9 @@ def generate_invoice(customer_id, product_ids, quantities):
     pdf.cell(200, 5, "Mandleshwer Road, Gawali Palasiya, 453441", ln=True, align='C')
     pdf.cell(200, 5, "Phone: 0987654321 | Email: support@itcam.in", ln=True, align='C')
     pdf.cell(200, 5, txt="", ln=True)
-    pdf.set_font("DejaVu", 'B', 15)
+    pdf.set_font("DejaVu", 'B', 16)
     pdf.cell(200, 5, "INVOICE", ln=True, align='C')
-    pdf.image("Mlogo.png", x=165, y=35, w=30)
+    pdf.image("Men.png", x=140, y=35, w=65)
     pdf.cell(200, 3, txt="", ln=True)
 
     pdf.set_font("DejaVu", size=12)
