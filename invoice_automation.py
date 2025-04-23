@@ -111,6 +111,8 @@ def generate_invoice(customer_id, product_ids, quantities):
     # Signature
     pdf.ln(35)
     pdf.set_font("DejaVu", 'B', size=12)
+    pdf.image("stampseal.png", x=160, y=161, w=40)
+    pdf.image("sign.png", x=140, y=169, w=80)
     pdf.cell(0, 9, "Authorized Signatory", ln=True, align='R')
     pdf.cell(0, 9, "Devendra Patidar", ln=True, align='R')
     pdf.set_font("DejaVu", '', size=11)
