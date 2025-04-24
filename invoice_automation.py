@@ -62,7 +62,7 @@ def generate_invoice(customer_id, product_ids, quantities):
     pdf.cell(200, 5, txt="", ln=True)
     pdf.set_font("DejaVu", 'B', 16)
     pdf.cell(200, 5, "INVOICE", ln=True, align='C')
-    pdf.image("Men.png", x=140, y=35, w=65)
+    pdf.image("logo.png", x=135, y=35, w=55)
     pdf.cell(200, 3, txt="", ln=True)
 
     pdf.set_font("DejaVu", size=12)
@@ -110,7 +110,7 @@ def generate_invoice(customer_id, product_ids, quantities):
     pdf.cell(30, 10, txt=f"₹ {total}", border=1)
 
     # Signature
-    pdf.ln(12)
+    pdf.ln(5)
 
     # Insert stamp and signature images above the signatory text
     current_y = pdf.get_y()
@@ -121,7 +121,7 @@ def generate_invoice(customer_id, product_ids, quantities):
     pdf.set_font("DejaVu", 'B', size=12)
     pdf.cell(0, 9, "Authorized Signatory", ln=True, align='R')
     pdf.cell(0, 9, "Devendra Patidar", ln=True, align='R')
-    pdf.set_font("DejaVu", '', size=11)
+    pdf.set_font("DejaVu", '', size=10)
     pdf.cell(0, 5, "IT CAM Security Pvt. Ltd.", ln=True, align='R')
 
     filename = f"invoice_{invoice_number}.pdf"
